@@ -37,7 +37,7 @@ jobs:
       - name: Run Tests
         run: swift test --enable-code-coverage --parallel
       - name: Swift Coverage Report
-        run: xcrun llvm-cov export -format="lcov" .build/debug/azure-devops-swiftTests.xctest/Contents/MacOS/azure-devops-swiftPackageTests -instr-profile .build/debug/codecov/default.profdata > coverage_report.lcov
+        run: xcrun llvm-cov export -format="lcov" .build/debug/azure-devops-swiftPackageTests.xctest/Contents/MacOS/azure-devops-swiftPackageTests -instr-profile .build/debug/codecov/default.profdata > coverage_report.lcov
       - uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
