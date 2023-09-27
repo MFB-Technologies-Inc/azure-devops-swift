@@ -32,7 +32,7 @@ extension AZFixtures.PolicyType {
             AZFixtures.PolicyType.status,
             AZFixtures.PolicyType.workItemLinking,
 
-        ].sorted(using: KeyPathComparator(\.displayName))
+        ]
     )
 }
 
