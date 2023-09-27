@@ -31,7 +31,6 @@ extension AZFixtures.PolicyType {
             AZFixtures.PolicyType.secretsScanningRestriction,
             AZFixtures.PolicyType.status,
             AZFixtures.PolicyType.workItemLinking,
-
         ]
     )
 }
