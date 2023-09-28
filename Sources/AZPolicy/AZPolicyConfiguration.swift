@@ -27,17 +27,14 @@ public struct AZPolicyConfiguration: Hashable, Sendable, Identifiable, Encodable
     public struct Scope: Hashable, Sendable, Codable {
         public var refName: String
         public var matchKind: String
-        public var repositoryId: RepositoryId
+        public var repositoryId: AZRepositoryId
 
-        public init(refName: String, matchKind: String, repositoryId: RepositoryId) {
+        public init(refName: String, matchKind: String, repositoryId: AZRepositoryId) {
             self.refName = refName
             self.matchKind = matchKind
             self.repositoryId = repositoryId
         }
     }
-
-    public enum _RepositoryIdTag {}
-    public typealias RepositoryId = Tagged<_RepositoryIdTag, String>
 
     public init(
         id: ID,

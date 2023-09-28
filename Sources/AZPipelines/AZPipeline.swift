@@ -75,10 +75,10 @@ extension AZPipeline {
     }
 
     public struct ConfigurationRepository: Hashable, Sendable, Codable {
-        public let id: RepositoryId
+        public let id: AZRepositoryId
         public let type: RepositoryType
 
-        public init(id: RepositoryId, type: RepositoryType) {
+        public init(id: AZRepositoryId, type: RepositoryType) {
             self.id = id
             self.type = type
         }
@@ -87,7 +87,4 @@ extension AZPipeline {
     public enum RepositoryType: String, Hashable, Sendable, Codable {
         case azureReposGit
     }
-
-    public enum _RepositoryIdTag {}
-    public typealias RepositoryId = Tagged<_RepositoryIdTag, String>
 }
