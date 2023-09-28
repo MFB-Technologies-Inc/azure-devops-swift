@@ -11,16 +11,13 @@ import Foundation
 import Tagged
 
 public struct AZPipeline: Identifiable, Hashable, Sendable, Codable {
-    public let id: ID
+    public let id: AZPipelineId
     public var name: Name
     public let configuration: Configuration
     public var folder: String
     public let revision: Int
     public let url: URL
     public let _links: [String: AZReferenceLink]?
-
-    public enum _IDTag {}
-    public typealias ID = Tagged<_IDTag, Int>
 
     public enum _NameTag {}
     public typealias Name = Tagged<_NameTag, String>

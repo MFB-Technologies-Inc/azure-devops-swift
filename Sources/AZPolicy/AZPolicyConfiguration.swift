@@ -113,7 +113,7 @@ extension AZPolicyConfiguration {
     }
 
     public struct BuildSettings: Hashable, Sendable, Codable {
-        public let buildDefinitionId: RepositoryId
+        public let buildDefinitionId: AZPipelineId
         public var queueOnSourceUpdateOnly: Bool
         public var manualQueueOnly: Bool
         public var displayName: String
@@ -122,7 +122,7 @@ extension AZPolicyConfiguration {
         public var filenamePatterns: [String]?
 
         public init(
-            buildDefinitionId: RepositoryId,
+            buildDefinitionId: AZPipelineId,
             queueOnSourceUpdateOnly: Bool,
             manualQueueOnly: Bool,
             displayName: String,
