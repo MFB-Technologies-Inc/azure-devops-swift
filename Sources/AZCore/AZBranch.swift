@@ -8,7 +8,7 @@
 
 /// Phantom type for referencing a devops repository branch by path but initialized by name..
 public struct AZBranch: CustomStringConvertible, ExpressibleByStringLiteral, ExpressibleByStringInterpolation, Hashable,
-    Sendable
+    Sendable, RawRepresentable
 {
     /// The path prefix for all branches in a repository
     private static let prefix: StaticString = #"refs/heads/"#
