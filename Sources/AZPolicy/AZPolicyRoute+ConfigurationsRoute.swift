@@ -74,11 +74,11 @@ extension AZPolicyRoute.ConfigurationsRoute {
 
     public struct GetRequest: Hashable, Sendable, AZVersionedRequest_7_0, AZGetRequest {
         public let configurationId: AZPolicyConfiguration.ID
-        public let apiVersion: String = "7.0"
+        public let apiVersion: AZApiVersion = .sevenDotZero
 
         public var queryItems: [String: String] {
             [
-                "api-version": apiVersion,
+                "api-version": apiVersion.rawValue,
                 "configurationId": configurationId.rawValue.description,
             ]
         }

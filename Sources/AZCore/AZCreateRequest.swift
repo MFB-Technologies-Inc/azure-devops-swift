@@ -28,7 +28,7 @@ public struct AZCreateRequest<T>: AZVersionedRequest, AZPostRequest where T: Enc
     }
 
     public static func sevenDotZero(body: T) -> Self {
-        AZCreateRequest(apiVersion: "7.0", body: body)
+        AZCreateRequest(apiVersion: .sevenDotZero, body: body)
     }
 }
 
