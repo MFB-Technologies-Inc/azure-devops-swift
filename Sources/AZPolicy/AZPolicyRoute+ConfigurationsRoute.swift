@@ -74,7 +74,6 @@ extension AZPolicyRoute.ConfigurationsRoute {
 
     public struct GetRequest: Hashable, Sendable, AZVersionedRequest_7_0, AZGetRequest {
         public let configurationId: AZPolicyConfiguration.ID
-        public let apiVersion: AZApiVersion = .sevenDotZero
 
         public var queryItems: [String: String] {
             [
