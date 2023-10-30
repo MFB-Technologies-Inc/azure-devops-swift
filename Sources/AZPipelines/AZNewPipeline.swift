@@ -22,7 +22,9 @@ public struct AZNewPipeline: Hashable, Sendable, Codable {
 }
 
 extension AZNewPipeline: Identifiable {
-    public var id: AZPipeline.Name {
-        name
+    public typealias ID = Tagged<Self, String>
+
+    public var id: ID {
+        ID(folder + name.rawValue)
     }
 }
