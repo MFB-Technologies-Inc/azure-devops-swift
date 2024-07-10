@@ -85,6 +85,13 @@ extension AZPolicyConfiguration: Decodable {
             _links: proxy._links
         )
     }
+
+    /// `internal` coding key for policy configuration settings to use when decoding with `decodeWithConfiguration`
+    ///
+    /// Named so it doesn't collide with the synthesized `CodingKeys`
+    enum _DecodingKeys: String, CodingKey {
+        case settings
+    }
 }
 
 /// Proxy for decoding without settings so the policy type can provide decoding configuration for settings
@@ -99,103 +106,4 @@ private struct _AZPolicyConfiguration: Decodable {
     let type: AZPolicyType
     let url: URL
     let _links: [String: AZReferenceLink]?
-}
-
-// MARK: Settings
-
-extension AZPolicyConfiguration {
-    public enum Settings: Hashable, Sendable {
-        case build(BuildSettings)
-        case requiredReviewers(RequiredReviewersSettings)
-    }
-
-    public struct BuildSettings: Hashable, Sendable, Codable {
-        public let buildDefinitionId: AZPipelineId
-        public var queueOnSourceUpdateOnly: Bool
-        public var manualQueueOnly: Bool
-        public var displayName: String
-        public var validDuration: Double
-        public var scope: [Scope]
-        public var filenamePatterns: [String]?
-
-        public init(
-            buildDefinitionId: AZPipelineId,
-            queueOnSourceUpdateOnly: Bool,
-            manualQueueOnly: Bool,
-            displayName: String,
-            validDuration: Double,
-            scope: [Scope],
-            filenamePatterns: [String]?
-        ) {
-            self.buildDefinitionId = buildDefinitionId
-            self.queueOnSourceUpdateOnly = queueOnSourceUpdateOnly
-            self.manualQueueOnly = manualQueueOnly
-            self.displayName = displayName
-            self.validDuration = validDuration
-            self.scope = scope
-            self.filenamePatterns = filenamePatterns
-        }
-
-        fileprivate static func decodeWithConfiguration(decoder: some Decoder) throws -> Self {
-            let configurationContainer = try decoder.container(keyedBy: AZPolicyConfiguration.CodingKeys.self)
-            return try configurationContainer.decode(Self.self, forKey: .settings)
-        }
-    }
-
-    public struct RequiredReviewersSettings: Hashable, Sendable, Codable {
-        public let requiredReviewerIds: [String]
-        public var filenamePatters: [String]
-        public var addedFilesOnly: Bool
-        public var message: String?
-        public var scope: [Scope]
-
-        public init(
-            requiredReviewerIds: [String],
-            filenamePatters: [String],
-            addedFilesOnly: Bool,
-            message: String? = nil,
-            scope: [Scope]
-        ) {
-            self.requiredReviewerIds = requiredReviewerIds
-            self.filenamePatters = filenamePatters
-            self.addedFilesOnly = addedFilesOnly
-            self.message = message
-            self.scope = scope
-        }
-
-        fileprivate static func decodeWithConfiguration(decoder: some Decoder) throws -> Self {
-            let configurationContainer = try decoder.container(keyedBy: AZPolicyConfiguration.CodingKeys.self)
-            return try configurationContainer.decode(Self.self, forKey: .settings)
-        }
-    }
-}
-
-extension AZPolicyConfiguration.Settings: Encodable {
-    public func encode(to encoder: Encoder) throws {
-        switch self {
-        case let .build(buildSettings):
-            try buildSettings.encode(to: encoder)
-        case let .requiredReviewers(requiredReviewerSettings):
-            try requiredReviewerSettings.encode(to: encoder)
-        }
-    }
-}
-
-extension AZPolicyConfiguration.Settings: DecodableWithConfiguration {
-    public init(from decoder: Decoder, configuration: AZPolicyType.DisplayName) throws {
-        switch configuration {
-        case .build:
-            self = try .build(AZPolicyConfiguration.BuildSettings.decodeWithConfiguration(decoder: decoder))
-        case .requiredReviewers:
-            self = try .requiredReviewers(
-                AZPolicyConfiguration.RequiredReviewersSettings
-                    .decodeWithConfiguration(decoder: decoder)
-            )
-        default:
-            throw DecodingError.dataCorrupted(DecodingError.Context(
-                codingPath: decoder.codingPath,
-                debugDescription: "Unsupported policy type '\(configuration.rawValue)'"
-            ))
-        }
-    }
 }

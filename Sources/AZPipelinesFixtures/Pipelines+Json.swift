@@ -1,4 +1,4 @@
-// AZFixtures+Pipelines.swift
+// Pipelines+Json.swift
 // azure-devops-swift
 //
 // Copyright © 2023 MFB Technologies, Inc. All rights reserved.
@@ -8,6 +8,6 @@
 
 import AZCoreFixtures
 
-extension AZFixtures {
-    public enum Pipelines {}
+extension AZFixtures.Pipelines {
+    public enum Json {}
 }
