@@ -14,6 +14,7 @@ extension AZPolicyConfiguration {
         public var message: String?
         public var scope: [Scope]
 
+        @inlinable
         public init(
             requiredReviewerIds: [String],
             filenamePatters: [String],
@@ -28,6 +29,7 @@ extension AZPolicyConfiguration {
             self.scope = scope
         }
 
+        @usableFromInline
         static func decodeWithConfiguration(decoder: some Decoder) throws -> Self {
             let configurationContainer = try decoder.container(keyedBy: AZPolicyConfiguration._DecodingKeys.self)
             return try configurationContainer.decode(Self.self, forKey: .settings)

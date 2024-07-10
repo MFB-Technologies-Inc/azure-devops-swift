@@ -29,6 +29,7 @@ public struct AZPolicyConfiguration: Hashable, Sendable, Identifiable, Encodable
         public var matchKind: String
         public var repositoryId: AZRepositoryId
 
+        @inlinable
         public init(refName: String, matchKind: String, repositoryId: AZRepositoryId) {
             self.refName = refName
             self.matchKind = matchKind
@@ -36,6 +37,7 @@ public struct AZPolicyConfiguration: Hashable, Sendable, Identifiable, Encodable
         }
     }
 
+    @inlinable
     public init(
         id: ID,
         createdDate: String,
@@ -69,6 +71,7 @@ public struct AZPolicyConfiguration: Hashable, Sendable, Identifiable, Encodable
 // MARK: Decodable
 
 extension AZPolicyConfiguration: Decodable {
+    @inlinable
     public init(from decoder: Decoder) throws {
         let proxy = try _AZPolicyConfiguration(from: decoder)
         try self.init(
@@ -95,15 +98,26 @@ extension AZPolicyConfiguration: Decodable {
 }
 
 /// Proxy for decoding without settings so the policy type can provide decoding configuration for settings
-private struct _AZPolicyConfiguration: Decodable {
+@usableFromInline
+struct _AZPolicyConfiguration: Decodable {
+    @usableFromInline
     let id: AZPolicyConfiguration.ID
+    @usableFromInline
     let createdDate: String
+    @usableFromInline
     let isBlocking: Bool
+    @usableFromInline
     let isDeleted: Bool
+    @usableFromInline
     let isEnabled: Bool
+    @usableFromInline
     let isEnterpriseManaged: Bool
+    @usableFromInline
     let revision: Int
+    @usableFromInline
     let type: AZPolicyType
+    @usableFromInline
     let url: URL
+    @usableFromInline
     let _links: [String: AZReferenceLink]?
 }

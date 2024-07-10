@@ -15,6 +15,7 @@ public enum AZPolicyRoute: Hashable, Sendable, AZRequest {
     case configurations(ConfigurationsRoute)
     case typeRoute(TypeRoute)
 
+    @inlinable
     public var urlPath: String {
         let subPath: String
         switch self {
@@ -26,6 +27,7 @@ public enum AZPolicyRoute: Hashable, Sendable, AZRequest {
         return "policy/\(subPath)"
     }
 
+    @inlinable
     public var queryItems: [String: String] {
         switch self {
         case let .configurations(configurationsRoute):
@@ -35,6 +37,7 @@ public enum AZPolicyRoute: Hashable, Sendable, AZRequest {
         }
     }
 
+    @inlinable
     public var method: HTTPRequest.Method {
         switch self {
         case let .configurations(configurationsRoute):
@@ -44,6 +47,7 @@ public enum AZPolicyRoute: Hashable, Sendable, AZRequest {
         }
     }
 
+    @inlinable
     public func body(encoder: some JSONEncoder) throws -> Data? {
         switch self {
         case let .configurations(configurationsRoute):

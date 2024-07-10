@@ -9,16 +9,19 @@
 import AZCore
 import Foundation
 import HTTPTypes
+import Tagged
 
 public enum AZPipelineRoute: Hashable, Sendable, AZRequest {
     case create(AZCreateRequest<AZNewPipeline>)
     case get(GetRequest)
     case list(ListRequest)
 
+    @inlinable
     public var urlPath: String {
         "pipelines"
     }
 
+    @inlinable
     public var queryItems: [String: String] {
         switch self {
         case let .create(createRequest):
@@ -30,6 +33,7 @@ public enum AZPipelineRoute: Hashable, Sendable, AZRequest {
         }
     }
 
+    @inlinable
     public var method: HTTPRequest.Method {
         switch self {
         case let .create(createRequest):
@@ -41,6 +45,7 @@ public enum AZPipelineRoute: Hashable, Sendable, AZRequest {
         }
     }
 
+    @inlinable
     public func body(encoder: some JSONEncoder) throws -> Data? {
         switch self {
         case let .create(createRequest):
@@ -59,6 +64,7 @@ extension AZPipelineRoute {
     public struct GetRequest: Hashable, Sendable, AZVersionedRequest_7_0, AZGetRequest {
         public let pipelineId: AZPipeline.ID
 
+        @inlinable
         public var queryItems: [String: String] {
             [
                 "api-version": apiVersion.rawValue,
@@ -66,6 +72,7 @@ extension AZPipelineRoute {
             ]
         }
 
+        @inlinable
         public init(pipelineId: AZPipeline.ID) {
             self.pipelineId = pipelineId
         }
@@ -75,6 +82,7 @@ extension AZPipelineRoute {
         public var top: Int
         public var continuationToken: String?
 
+        @inlinable
         public var queryItems: [String: String] {
             var items: [String: String] = [
                 "api-version": apiVersion.rawValue,
@@ -86,6 +94,7 @@ extension AZPipelineRoute {
             return items
         }
 
+        @inlinable
         public init(top: Int, continuationToken: String? = nil) {
             self.top = top
             self.continuationToken = continuationToken

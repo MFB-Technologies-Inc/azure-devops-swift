@@ -10,6 +10,7 @@ public struct AZListResponse<T> {
     public let count: Int
     public let value: [T]
 
+    @inlinable
     public init(count: Int, value: [T]) {
         self.count = count
         self.value = value

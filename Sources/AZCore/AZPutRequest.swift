@@ -11,5 +11,6 @@ import HTTPTypes
 public protocol AZPutRequest: AZRequest {}
 
 extension AZPutRequest {
+    @inlinable
     public var method: HTTPRequest.Method { .put }
 }

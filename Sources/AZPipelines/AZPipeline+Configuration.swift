@@ -12,6 +12,7 @@ extension AZPipeline {
         public var repository: ConfigurationRepository?
         public var path: String?
 
+        @inlinable
         public init(type: ConfigurationType, repository: ConfigurationRepository? = nil, path: String? = nil) {
             self.type = type
             self.repository = repository
@@ -22,6 +23,7 @@ extension AZPipeline {
         public static let designerJson: Self = Configuration(type: .designerJson)
         public static let justInTime: Self = Configuration(type: .justInTime)
         public static let unknown: Self = Configuration(type: .unknown)
+        @inlinable
         public static func yaml(path: String, repository: ConfigurationRepository, type _: ConfigurationType) -> Self {
             self.init(
                 type: .yaml,
@@ -43,6 +45,7 @@ extension AZPipeline {
         public let id: AZRepositoryId
         public let type: RepositoryType
 
+        @inlinable
         public init(id: AZRepositoryId, type: RepositoryType) {
             self.id = id
             self.type = type

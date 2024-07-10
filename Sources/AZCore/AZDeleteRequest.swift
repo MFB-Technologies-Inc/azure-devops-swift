@@ -12,7 +12,9 @@ import HTTPTypes
 public protocol AZDeleteRequest: AZRequest {}
 
 extension AZDeleteRequest {
+    @inlinable
     public var method: HTTPRequest.Method { .delete }
+    @inlinable
     public func body(encoder _: some JSONEncoder) throws -> Data? {
         nil
     }

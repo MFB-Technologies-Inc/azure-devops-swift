@@ -11,6 +11,7 @@ import XCTest
 
 extension StringProtocol {
     /// Returns a String with all whitespace and newlines removed
+    @inlinable
     public func removeJsonFormatting() throws -> String {
         let object = try JSONSerialization.jsonObject(with: XCTUnwrap(data(using: .utf8)))
         let data = try JSONSerialization.data(withJSONObject: object, options: .sortedKeys)

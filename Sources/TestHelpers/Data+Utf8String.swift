@@ -10,6 +10,7 @@ import Foundation
 import XCTest
 
 extension Data {
+    @inlinable
     public func utf8String() -> String {
         String(decoding: self, as: UTF8.self)
     }

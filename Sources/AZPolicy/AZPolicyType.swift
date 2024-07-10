@@ -17,6 +17,7 @@ public struct AZPolicyType: Hashable, Sendable, Identifiable, Codable {
     public let description: String?
     public let _links: [String: AZReferenceLink]?
 
+    @inlinable
     public init(
         id: ID,
         displayName: DisplayName,

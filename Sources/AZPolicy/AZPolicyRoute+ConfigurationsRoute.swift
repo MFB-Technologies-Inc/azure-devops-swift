@@ -9,6 +9,7 @@
 import AZCore
 import Foundation
 import HTTPTypes
+import Tagged
 
 extension AZPolicyRoute {
     public enum ConfigurationsRoute: Hashable, Sendable, AZRequest {
@@ -18,10 +19,12 @@ extension AZPolicyRoute {
         case list(ListRequest)
         case update(UpdateRequest)
 
+        @inlinable
         public var urlPath: String {
             "configurations"
         }
 
+        @inlinable
         public var queryItems: [String: String] {
             switch self {
             case let .create(createRequest):
@@ -37,6 +40,7 @@ extension AZPolicyRoute {
             }
         }
 
+        @inlinable
         public var method: HTTPRequest.Method {
             switch self {
             case let .create(createRequest):
@@ -52,6 +56,7 @@ extension AZPolicyRoute {
             }
         }
 
+        @inlinable
         public func body(encoder: some JSONEncoder) throws -> Data? {
             switch self {
             case let .create(createRequest):
@@ -75,6 +80,7 @@ extension AZPolicyRoute.ConfigurationsRoute {
     public struct GetRequest: Hashable, Sendable, AZVersionedRequest_7_0, AZGetRequest {
         public let configurationId: AZPolicyConfiguration.ID
 
+        @inlinable
         public var queryItems: [String: String] {
             [
                 "api-version": apiVersion.rawValue,
@@ -82,6 +88,7 @@ extension AZPolicyRoute.ConfigurationsRoute {
             ]
         }
 
+        @inlinable
         public init(configurationId: AZPolicyConfiguration.ID) {
             self.configurationId = configurationId
         }
@@ -92,6 +99,7 @@ extension AZPolicyRoute.ConfigurationsRoute {
         public var continuationToken: String?
         public var policyType: AZPolicyType.ID?
 
+        @inlinable
         public var queryItems: [String: String] {
             var items: [String: String] = [
                 "api-version": apiVersion.rawValue,
@@ -106,6 +114,7 @@ extension AZPolicyRoute.ConfigurationsRoute {
             return items
         }
 
+        @inlinable
         public init(top: Int, continuationToken: String? = nil, policyType: AZPolicyType.ID? = nil) {
             self.top = top
             self.continuationToken = continuationToken
@@ -114,9 +123,11 @@ extension AZPolicyRoute.ConfigurationsRoute {
     }
 
     public struct UpdateRequest: Hashable, Sendable, AZVersionedRequest_7_0, AZPutRequest {
+        @inlinable
         public var configurationId: AZPolicyConfiguration.ID { body.id }
         public let body: AZPolicyConfiguration
 
+        @inlinable
         public var queryItems: [String: String] {
             [
                 "api-version": apiVersion.rawValue,
@@ -124,10 +135,12 @@ extension AZPolicyRoute.ConfigurationsRoute {
             ]
         }
 
+        @inlinable
         public func body(encoder: some JSONEncoder) throws -> Data? {
             try? encoder.encode(body)
         }
 
+        @inlinable
         public init(body: AZPolicyConfiguration) {
             self.body = body
         }

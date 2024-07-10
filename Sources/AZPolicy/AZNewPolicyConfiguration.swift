@@ -18,6 +18,7 @@ public struct AZNewPolicyConfiguration: Hashable, Sendable, Encodable {
     public var settings: AZPolicyConfiguration.Settings
     public let type: AZResourceReference<AZPolicyType>
 
+    @inlinable
     public init(
         isBlocking: Bool,
         isDeleted: Bool,
@@ -36,6 +37,7 @@ public struct AZNewPolicyConfiguration: Hashable, Sendable, Encodable {
 }
 
 extension AZNewPolicyConfiguration: Decodable {
+    @inlinable
     public init(from decoder: Decoder) throws {
         let proxy = try _AZNewPolicyConfiguration(from: decoder)
         try self.init(
@@ -50,11 +52,18 @@ extension AZNewPolicyConfiguration: Decodable {
 }
 
 /// Proxy for decoding without settings so the policy type can provide decoding configuration for settings
-private struct _AZNewPolicyConfiguration: Decodable {
+@usableFromInline
+struct _AZNewPolicyConfiguration: Decodable {
+    @usableFromInline
     let isBlocking: Bool
+    @usableFromInline
     let isDeleted: Bool
+    @usableFromInline
     let isEnabled: Bool
+    @usableFromInline
     let isEnterpriseManaged: Bool
+    @usableFromInline
     let revision: Int
+    @usableFromInline
     let type: AZResourceReference<AZPolicyType>
 }

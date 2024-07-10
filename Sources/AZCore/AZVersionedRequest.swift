@@ -13,5 +13,6 @@ public protocol AZVersionedRequest: AZRequest {
 public protocol AZVersionedRequest_7_0: AZVersionedRequest {}
 
 extension AZVersionedRequest_7_0 {
+    @inlinable
     public var apiVersion: AZApiVersion { .sevenDotZero }
 }

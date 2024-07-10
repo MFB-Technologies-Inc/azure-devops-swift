@@ -22,6 +22,7 @@ public struct AZPipeline: Identifiable, Hashable, Sendable, Codable {
     public enum _NameTag {}
     public typealias Name = Tagged<_NameTag, String>
 
+    @inlinable
     public init(
         id: ID,
         name: Name,

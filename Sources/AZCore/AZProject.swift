@@ -14,6 +14,7 @@ public struct AZProject: Hashable, Identifiable, Codable, Sendable {
     public let name: Name
     public let org: AZOrganization
 
+    @inlinable
     public init(id: ID, name: Name, org: AZOrganization) {
         self.id = id
         self.name = name
