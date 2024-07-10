@@ -18,6 +18,7 @@ extension AZPolicyConfiguration {
 }
 
 extension AZPolicyConfiguration.Settings: Encodable {
+    @inlinable
     public func encode(to encoder: Encoder) throws {
         switch self {
         case let .build(buildSettings):
@@ -29,6 +30,7 @@ extension AZPolicyConfiguration.Settings: Encodable {
 }
 
 extension AZPolicyConfiguration.Settings: DecodableWithConfiguration {
+    @inlinable
     public init(from decoder: Decoder, configuration: AZPolicyType.DisplayName) throws {
         switch configuration {
         case .build:

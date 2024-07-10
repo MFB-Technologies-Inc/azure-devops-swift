@@ -20,6 +20,7 @@ extension AZPolicyConfiguration {
         public var scope: [Scope]
         public var filenamePatterns: [String]?
 
+        @inlinable
         public init(
             buildDefinitionId: AZPipelineId,
             queueOnSourceUpdateOnly: Bool,
@@ -38,6 +39,7 @@ extension AZPolicyConfiguration {
             self.filenamePatterns = filenamePatterns
         }
 
+        @usableFromInline
         static func decodeWithConfiguration(decoder: some Decoder) throws -> Self {
             let configurationContainer = try decoder.container(keyedBy: AZPolicyConfiguration._DecodingKeys.self)
             return try configurationContainer.decode(Self.self, forKey: .settings)

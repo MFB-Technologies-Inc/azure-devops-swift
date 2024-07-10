@@ -14,6 +14,7 @@ public struct AZNewPipeline: Hashable, Sendable, Codable {
     public let folder: String
     public let configuration: AZPipeline.Configuration
 
+    @inlinable
     public init(name: AZPipeline.Name, folder: String, configuration: AZPipeline.Configuration) {
         self.name = name
         self.folder = folder
@@ -24,6 +25,7 @@ public struct AZNewPipeline: Hashable, Sendable, Codable {
 extension AZNewPipeline: Identifiable {
     public typealias ID = Tagged<Self, String>
 
+    @inlinable
     public var id: ID {
         ID(folder + name.rawValue)
     }

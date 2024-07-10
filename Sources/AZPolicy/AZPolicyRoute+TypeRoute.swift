@@ -9,16 +9,19 @@
 import AZCore
 import Foundation
 import HTTPTypes
+import Tagged
 
 extension AZPolicyRoute {
     public enum TypeRoute: Hashable, Sendable, AZRequest {
         case get(GetRequest)
         case list(ListRequest)
 
+        @inlinable
         public var urlPath: String {
             "types"
         }
 
+        @inlinable
         public var queryItems: [String: String] {
             switch self {
             case let .get(getRequest):
@@ -28,6 +31,7 @@ extension AZPolicyRoute {
             }
         }
 
+        @inlinable
         public var method: HTTPRequest.Method {
             switch self {
             case let .get(getRequest):
@@ -37,6 +41,7 @@ extension AZPolicyRoute {
             }
         }
 
+        @inlinable
         public func body(encoder: some JSONEncoder) throws -> Data? {
             switch self {
             case let .get(getRequest):
@@ -52,6 +57,7 @@ extension AZPolicyRoute.TypeRoute {
     public struct GetRequest: Hashable, Sendable, AZVersionedRequest_7_0, AZGetRequest {
         public let configurationId: AZPolicyType.ID
 
+        @inlinable
         public var queryItems: [String: String] {
             [
                 "api-version": apiVersion.rawValue,
@@ -59,18 +65,21 @@ extension AZPolicyRoute.TypeRoute {
             ]
         }
 
+        @inlinable
         public init(configurationId: AZPolicyType.ID) {
             self.configurationId = configurationId
         }
     }
 
     public struct ListRequest: Hashable, Sendable, AZVersionedRequest_7_0, AZGetRequest {
+        @inlinable
         public var queryItems: [String: String] {
             [
                 "api-version": apiVersion.rawValue,
             ]
         }
 
+        @inlinable
         public init() {
             // empty
         }

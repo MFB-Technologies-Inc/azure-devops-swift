@@ -18,6 +18,7 @@ public struct AZPipelineListElement: Identifiable, Hashable, Sendable, Codable {
     public let url: URL
     public let _links: [String: AZReferenceLink]?
 
+    @inlinable
     public init(
         id: AZPipeline.ID,
         name: AZPipeline.Name,

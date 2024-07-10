@@ -11,10 +11,12 @@ import Foundation
 public struct AZResourceReference<R>: Identifiable where R: Identifiable {
     public let id: R.ID
 
+    @inlinable
     public init(id: R.ID) {
         self.id = id
     }
 
+    @inlinable
     public init(resource: R) {
         self.init(id: resource.id)
     }

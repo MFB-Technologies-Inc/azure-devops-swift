@@ -7,26 +7,31 @@
 // LICENSE file in the root directory of this source tree.
 
 import Foundation
+import Tagged
 
 public struct AZUpdateRequest<T>: AZVersionedRequest, AZPutRequest where T: Encodable {
     public let apiVersion: AZApiVersion
     public let body: T
 
+    @inlinable
     public var queryItems: [String: String] {
         [
             "api-version": apiVersion.rawValue,
         ]
     }
 
+    @inlinable
     public func body(encoder: some JSONEncoder) throws -> Data? {
         try? encoder.encode(body)
     }
 
+    @inlinable
     public init(apiVersion: AZApiVersion, body: T) {
         self.apiVersion = apiVersion
         self.body = body
     }
 
+    @inlinable
     public static func sevenDotZero(body: T) -> Self {
         AZUpdateRequest(apiVersion: .sevenDotZero, body: body)
     }

@@ -11,5 +11,6 @@ import HTTPTypes
 public protocol AZPostRequest: AZRequest {}
 
 extension AZPostRequest {
+    @inlinable
     public var method: HTTPRequest.Method { .post }
 }

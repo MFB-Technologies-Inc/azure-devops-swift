@@ -11,8 +11,10 @@ public struct AZBranch: CustomStringConvertible, ExpressibleByStringLiteral, Exp
     Sendable, RawRepresentable
 {
     /// The path prefix for all branches in a repository
-    private static let prefix: StaticString = #"refs/heads/"#
+    @usableFromInline
+    static let prefix: StaticString = #"refs/heads/"#
 
+    @inlinable
     public init(name: CustomStringConvertible) {
         let stringValue = name.description
         self.name = name.description
@@ -23,6 +25,7 @@ public struct AZBranch: CustomStringConvertible, ExpressibleByStringLiteral, Exp
         }
     }
 
+    @inlinable
     public var description: String {
         rawValue
     }
@@ -33,20 +36,24 @@ public struct AZBranch: CustomStringConvertible, ExpressibleByStringLiteral, Exp
     /// The name of the branch without prefix
     public let name: String
 
+    @inlinable
     public init(rawValue: String) {
         self.init(name: rawValue)
     }
 
+    @inlinable
     public init(stringLiteral: String) {
         self.init(rawValue: stringLiteral)
     }
 
+    @inlinable
     public init(stringInterpolation: DefaultStringInterpolation) {
         self.init(rawValue: stringInterpolation.description)
     }
 }
 
 extension AZBranch: Decodable {
+    @inlinable
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         try self.init(rawValue: container.decode(String.self))
@@ -54,6 +61,7 @@ extension AZBranch: Decodable {
 }
 
 extension AZBranch: Encodable {
+    @inlinable
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         try container.encode(rawValue)

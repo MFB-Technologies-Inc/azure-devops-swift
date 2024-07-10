@@ -16,6 +16,7 @@ public enum AzureDevopsRoute: Hashable, Sendable, AZRequest {
     case pipeline(AZPipelineRoute)
     case policy(AZPolicyRoute)
 
+    @inlinable
     public var urlPath: String {
         switch self {
         case let .pipeline(pipelineRoute):
@@ -25,6 +26,7 @@ public enum AzureDevopsRoute: Hashable, Sendable, AZRequest {
         }
     }
 
+    @inlinable
     public var queryItems: [String: String] {
         switch self {
         case let .pipeline(pipelineRoute):
@@ -34,6 +36,7 @@ public enum AzureDevopsRoute: Hashable, Sendable, AZRequest {
         }
     }
 
+    @inlinable
     public var method: HTTPRequest.Method {
         switch self {
         case let .pipeline(pipelineRoute):
@@ -43,6 +46,7 @@ public enum AzureDevopsRoute: Hashable, Sendable, AZRequest {
         }
     }
 
+    @inlinable
     public func body(encoder: some JSONEncoder) throws -> Data? {
         switch self {
         case let .pipeline(pipelineRoute):

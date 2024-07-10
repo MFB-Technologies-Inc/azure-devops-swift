@@ -10,6 +10,7 @@ import Foundation
 import XCTest
 
 extension StaticString {
+    @inlinable
     public func utf8Data() -> Data {
         Data(description.utf8)
     }

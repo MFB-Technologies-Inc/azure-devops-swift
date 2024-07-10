@@ -11,6 +11,7 @@ import Foundation
 public struct AZReferenceLink: Hashable, Sendable, Codable {
     public let href: URL
 
+    @inlinable
     public init(href: URL) {
         self.href = href
     }

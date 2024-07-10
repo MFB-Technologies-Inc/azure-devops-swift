@@ -12,7 +12,9 @@ import HTTPTypes
 public protocol AZGetRequest: AZRequest {}
 
 extension AZGetRequest {
+    @inlinable
     public var method: HTTPRequest.Method { .get }
+    @inlinable
     public func body(encoder _: some JSONEncoder) throws -> Data? {
         nil
     }

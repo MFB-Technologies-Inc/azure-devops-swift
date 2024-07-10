@@ -13,5 +13,6 @@ public enum AZQueryOrder: String, Hashable, Encodable, CustomStringConvertible, 
     case nameDesc = "NameDesc"
     case none = "None"
 
+    @inlinable
     public var description: String { rawValue }
 }
