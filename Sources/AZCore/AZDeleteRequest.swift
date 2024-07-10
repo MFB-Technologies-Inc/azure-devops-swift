@@ -1,4 +1,4 @@
-// AZRequest.swift
+// AZDeleteRequest.swift
 // azure-devops-swift
 //
 // Copyright © 2023 MFB Technologies, Inc. All rights reserved.
@@ -9,8 +9,11 @@
 import Foundation
 import HTTPTypes
 
-public protocol AZRequest {
-    var queryItems: [String: String] { get }
-    var method: HTTPRequest.Method { get }
-    func body(encoder: some JSONEncoder) throws -> Data?
+public protocol AZDeleteRequest: AZRequest {}
+
+extension AZDeleteRequest {
+    public var method: HTTPRequest.Method { .delete }
+    public func body(encoder _: some JSONEncoder) throws -> Data? {
+        nil
+    }
 }

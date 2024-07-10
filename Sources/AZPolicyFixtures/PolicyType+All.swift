@@ -1,4 +1,4 @@
-// PolicyType.swift
+// PolicyType+All.swift
 // azure-devops-swift
 //
 // Copyright © 2023 MFB Technologies, Inc. All rights reserved.

@@ -10,7 +10,7 @@ import Foundation
 import XCTest
 
 extension Data {
-    public func utf8String() throws -> String {
-        try XCTUnwrap(String(data: self, encoding: .utf8))
+    public func utf8String() -> String {
+        String(decoding: self, as: UTF8.self)
     }
 }

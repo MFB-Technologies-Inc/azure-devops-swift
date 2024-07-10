@@ -7,12 +7,7 @@
 // LICENSE file in the root directory of this source tree.
 
 import AZCoreFixtures
-import Foundation
 
 extension AZFixtures {
     public enum PolicyType {}
-}
-
-extension AZFixtures.PolicyType {
-    public enum Json {}
 }

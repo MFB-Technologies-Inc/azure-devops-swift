@@ -22,7 +22,7 @@ final class AZPipelineCodingTests: XCTestCase {
     }
 
     func testDecodePipelineListResponse() throws {
-        let responseData = try AZFixtures.Pipelines.Json.listResponse.utf8Data()
+        let responseData = AZFixtures.Pipelines.Json.listResponse.utf8Data()
         let response = try JSONDecoder.test.decode(AZListResponse<AZPipelineListElement>.self, from: responseData)
         XCTAssertNoDifference(response, AZFixtures.Pipelines.listResponse)
     }

@@ -11,7 +11,3 @@ import AZCoreFixtures
 extension AZFixtures {
     public enum Pipelines {}
 }
-
-extension AZFixtures.Pipelines {
-    public enum Json {}
-}
