@@ -14,6 +14,7 @@ extension AZPolicyConfiguration {
     public enum Settings: Hashable, Sendable {
         case build(BuildSettings)
         case requiredReviewers(RequiredReviewersSettings)
+        case status(StatusSettings)
     }
 }
 
@@ -25,6 +26,8 @@ extension AZPolicyConfiguration.Settings: Encodable {
             try buildSettings.encode(to: encoder)
         case let .requiredReviewers(requiredReviewerSettings):
             try requiredReviewerSettings.encode(to: encoder)
+        case let .status(statusSettings):
+            try statusSettings.encode(to: encoder)
         }
     }
 }
