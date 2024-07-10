@@ -96,9 +96,9 @@ extension AZPolicyConfiguration.StatusSettings.PolicyApplicability: Encodable {
     public func encode(to encoder: any Encoder) throws {
         switch self {
         case .applyByDefault:
-            try Int?.none?.encode(to: encoder)
+            try Int?.none.encode(to: encoder)
         case .conditional:
-            try 1.encode(to: encoder)
+            try Int?.some(1).encode(to: encoder)
         }
     }
 }
