@@ -10,7 +10,7 @@ import Foundation
 import XCTest
 
 extension StaticString {
-    public func utf8Data() throws -> Data {
-        try XCTUnwrap(description.data(using: .utf8))
+    public func utf8Data() -> Data {
+        Data(description.utf8)
     }
 }

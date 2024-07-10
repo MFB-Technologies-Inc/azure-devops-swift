@@ -22,7 +22,7 @@ final class AZPolicyCodingTests: XCTestCase {
     }
 
     func testDecodePolicyTypeListResponse() throws {
-        let responseData = try AZFixtures.PolicyType.Json.listResponse.utf8Data()
+        let responseData = AZFixtures.PolicyType.Json.listResponse.utf8Data()
         let response = try JSONDecoder.test.decode(AZListResponse<AZPolicyType>.self, from: responseData)
         XCTAssertNoDifference(response, AZFixtures.PolicyType.listResponse)
     }

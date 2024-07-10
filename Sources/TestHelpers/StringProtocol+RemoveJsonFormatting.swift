@@ -14,6 +14,6 @@ extension StringProtocol {
     public func removeJsonFormatting() throws -> String {
         let object = try JSONSerialization.jsonObject(with: XCTUnwrap(data(using: .utf8)))
         let data = try JSONSerialization.data(withJSONObject: object, options: .sortedKeys)
-        return try XCTUnwrap(String(data: data, encoding: .utf8))
+        return String(decoding: data, as: UTF8.self)
     }
 }
