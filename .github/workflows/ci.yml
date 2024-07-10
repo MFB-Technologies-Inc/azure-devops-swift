@@ -19,16 +19,18 @@ jobs:
         run: swiftformat --version
       - name: Format lint
         run: swiftformat --lint .
+      - name: Install swiftlint
+        run: brew update && brew install swiftlint
       - name: SwiftLint version
         run: swiftlint --version
       - name: Lint
         run: swiftlint lint --quiet
   macos-test:
-    runs-on: macos-13
+    runs-on: macos-14
     environment: default
     strategy:
       matrix:
-        xcode: ['15.0', '15.3']
+        xcode: ['15.0.1', '15.3']
         # Swift: 5.9     5.10
     steps:
       - uses: actions/checkout@v3
